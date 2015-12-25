@@ -1,3 +1,12 @@
+#encoding: utf-8
+
+require 'sidekiq/web'
+
+# Add basic HTTP authentication for /sidekiq
+Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+  username.to_s == ENV["TPL_SIDEKIQ_USERNAME"].to_s && password.to_s == ENV["TPL_SIDEKIQ_PASSWORD"].to_s
+end if Rails.env.production?
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
