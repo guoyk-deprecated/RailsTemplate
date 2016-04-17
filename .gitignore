@@ -14,3 +14,9 @@
 
 # Ignore vendor/bundle
 vendor/bundle
+
+# Ignore .env
+/.env
+
+# Ignore RDB
+/*.rdb
